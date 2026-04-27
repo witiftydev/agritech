@@ -476,6 +476,99 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* AI FARM LIVE DEMO DASHBOARD */}
+      <section className="py-28 px-6 max-w-6xl mx-auto">
+        {/* TITLE */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          className="text-center mb-14"
+        >
+          <h2 className="text-4xl font-bold text-white">
+            Live AI Farm Dashboard
+          </h2>
+          <p className="text-gray-300 mt-4 max-w-2xl mx-auto">
+            Real-time simulation of smart farming system powered by AI + IoT
+            sensors.
+          </p>
+        </motion.div>
+
+        {/* MAIN CARD (VISIBLE FIX) */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          className="bg-white text-black rounded-2xl p-8 shadow-2xl border-4 border-green-400"
+        >
+          {/* HEADER */}
+          <div className="flex flex-wrap justify-between items-center mb-8">
+            <div>
+              <h3 className="text-green-700 font-bold text-lg">
+                🌾 Farm Status: ACTIVE
+              </h3>
+              <p className="text-gray-600 text-sm">
+                Location: Rajshahi, Bangladesh
+              </p>
+            </div>
+
+            <div className="flex gap-2">
+              <span className="px-3 py-1 text-xs bg-green-200 text-green-800 rounded-full font-semibold">
+                AI ONLINE
+              </span>
+              <span className="px-3 py-1 text-xs bg-blue-200 text-blue-800 rounded-full font-semibold">
+                IoT CONNECTED
+              </span>
+            </div>
+          </div>
+
+          {/* DATA GRID */}
+          <div className="grid md:grid-cols-3 gap-6">
+            {/* CARD 1 */}
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="p-6 rounded-xl border shadow-md bg-green-50"
+            >
+              <h4 className="font-bold text-green-700">🌱 Crop Health</h4>
+              <p className="text-3xl font-bold mt-2 text-black">92%</p>
+              <p className="text-gray-600 text-sm mt-1">
+                Healthy crops detected
+              </p>
+            </motion.div>
+
+            {/* CARD 2 */}
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="p-6 rounded-xl border shadow-md bg-blue-50"
+            >
+              <h4 className="font-bold text-blue-700">💧 Water Level</h4>
+              <p className="text-3xl font-bold mt-2 text-black">78%</p>
+              <p className="text-gray-600 text-sm mt-1">Irrigation optimal</p>
+            </motion.div>
+
+            {/* CARD 3 */}
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="p-6 rounded-xl border shadow-md bg-yellow-50"
+            >
+              <h4 className="font-bold text-yellow-700">📊 Yield Forecast</h4>
+              <p className="text-3xl font-bold mt-2 text-black">+38%</p>
+              <p className="text-gray-600 text-sm mt-1">Expected increase</p>
+            </motion.div>
+          </div>
+
+          {/* LIVE STATUS BAR */}
+          <div className="mt-10 p-5 rounded-xl bg-black text-white">
+            <motion.p
+              animate={{ opacity: [1, 0.5, 1] }}
+              transition={{ repeat: Infinity, duration: 2 }}
+              className="text-sm"
+            >
+              ⚡ LIVE UPDATE: Soil improving • Irrigation optimized • No disease
+              detected
+            </motion.p>
+          </div>
+        </motion.div>
+      </section>
+
       {/* CTA */}
       <section className="py-24 text-center">
         <h2 className="text-4xl font-bold">
