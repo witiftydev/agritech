@@ -17,6 +17,7 @@ import {
   Sprout,
   Brain,
   LineChart,
+  Hand,
 } from "lucide-react";
 
 const fadeUp = {
@@ -332,6 +333,73 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* WHO IS THIS PLATFORM FOR */}
+      <section className="py-28 px-6 max-w-6xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          className="text-center mb-14"
+        >
+          <h2 className="text-4xl font-bold">Built for Every Type of Farmer</h2>
+          <p className="text-gray-300 mt-4 max-w-2xl mx-auto">
+            VerdantSphere adapts to all farming scales — from small farms to
+            industrial agriculture systems.
+          </p>
+        </motion.div>
+
+        <div className="grid md:grid-cols-4 gap-6">
+          {[
+            {
+              title: "Small Farmers",
+              desc: "Simple AI tools to improve yield and reduce manual effort.",
+              icon: "🌱",
+            },
+            {
+              title: "Commercial Farms",
+              desc: "Scale production with data-driven farming automation.",
+              icon: "🚜",
+            },
+            {
+              title: "Agri Enterprises",
+              desc: "Full analytics dashboard with global supply tracking.",
+              icon: "🏭",
+            },
+            {
+              title: "Government Projects",
+              desc: "Monitor agriculture at national scale with AI insights.",
+              icon: "🌍",
+            },
+          ].map((item, i) => (
+            <motion.div
+              key={i}
+              whileHover={{ scale: 1.05 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.1 }}
+              className="p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-lg text-center"
+            >
+              <div className="text-3xl">{item.icon}</div>
+              <h3 className="mt-4 text-green-400 font-semibold">
+                {item.title}
+              </h3>
+              <p className="text-gray-300 text-sm mt-2">{item.desc}</p>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* BOTTOM IMPACT LINE */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          className="mt-14 text-center"
+        >
+          <p className="text-green-300 font-medium">
+            ⚡ One platform. All farm sizes. Fully scalable AI agriculture
+            system.
+          </p>
+        </motion.div>
+      </section>
+
       {/* TESTIMONIALS */}
       <section className="py-28 px-6 text-center relative">
         {/* SECTION TITLE */}
@@ -581,8 +649,88 @@ export default function LandingPage() {
       </section>
 
       {/* FOOTER */}
-      <footer className="text-center py-10 text-gray-400">
-        © {new Date().getFullYear()} VerdantSphere AgriTech
+      <footer className="relative mt-20 border-t border-white/10 bg-[#071a12] text-white">
+        <div className="max-w-6xl mx-auto px-6 py-16 grid md:grid-cols-4 gap-10">
+          {/* BRAND */}
+          <div>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="flex items-center gap-2 text-green-400 font-bold text-xl"
+            >
+              <Leaf />
+              VerdantSphere
+            </motion.div>
+            <p className="text-gray-400 text-sm mt-3 leading-relaxed">
+              AI-powered agriculture platform helping farmers increase yield,
+              reduce cost, and grow sustainably with smart technology.
+            </p>
+          </div>
+
+          {/* PRODUCT */}
+          <div>
+            <h3 className="font-semibold mb-4 text-white">Product</h3>
+            <ul className="space-y-2 text-gray-400 text-sm">
+              <li className="hover:text-green-400 cursor-pointer">
+                AI Dashboard
+              </li>
+              <li className="hover:text-green-400 cursor-pointer">
+                Smart Irrigation
+              </li>
+              <li className="hover:text-green-400 cursor-pointer">
+                Crop Analytics
+              </li>
+              <li className="hover:text-green-400 cursor-pointer">
+                Market Insights
+              </li>
+            </ul>
+          </div>
+
+          {/* COMPANY */}
+          <div>
+            <h3 className="font-semibold mb-4 text-white">Company</h3>
+            <ul className="space-y-2 text-gray-400 text-sm">
+              <li className="hover:text-green-400 cursor-pointer">About Us</li>
+              <li className="hover:text-green-400 cursor-pointer">Careers</li>
+              <li className="hover:text-green-400 cursor-pointer">Contact</li>
+              <li className="hover:text-green-400 cursor-pointer">Support</li>
+            </ul>
+          </div>
+
+          {/* CONTACT */}
+          <div>
+            <h3 className="font-semibold mb-4 text-white">Get in Touch</h3>
+            <p className="text-gray-400 text-sm">wit.ifty.dev@gmail.com</p>
+            <p className="text-gray-400 text-sm mt-2">Dhaka, Bangladesh</p>
+          </div>
+        </div>
+
+        {/* BOTTOM BAR */}
+        <div className="border-t border-white/10 py-6 px-6 text-center">
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            className="text-gray-400 text-sm"
+          >
+            © {new Date().getFullYear()} VerdantSphere AgriTech. All rights
+            reserved.
+          </motion.p>
+
+          <p className="text-green-400 text-sm mt-2 font-medium flex items-center justify-center gap-2">
+            Designed & Developed by
+            <Hand className="w-4 h-4 text-green-300 animate-pulse" />
+            <a
+              href="https://fahimahmedifty.vercel.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white hover:text-green-300 transition font-semibold"
+            >
+              Fahim Ahmed Ifty
+            </a>
+          </p>
+        </div>
+
+        {/* GLOW EFFECT */}
+        <div className="absolute bottom-0 left-0 w-full h-40 bg-green-500/10 blur-3xl pointer-events-none"></div>
       </footer>
     </div>
   );
