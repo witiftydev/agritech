@@ -13,6 +13,10 @@ import {
   Wheat,
   TreePine,
   CloudRain,
+  Users,
+  Sprout,
+  Brain,
+  LineChart,
 } from "lucide-react";
 
 const fadeUp = {
@@ -20,16 +24,24 @@ const fadeUp = {
   show: { opacity: 1, y: 0, transition: { duration: 0.6 } },
 };
 
+const stagger = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+};
+
 export default function LandingPage() {
   return (
-    <div className="bg-[#0b1f14] text-white overflow-hidden">
-      {/* Floating Background Blobs */}
+    <div className="bg-[#0b1f14] text-white overflow-hidden relative">
+      {/* FLOATING BACKGROUND */}
       <div className="absolute w-[500px] h-[500px] bg-green-500/20 blur-3xl rounded-full top-[-200px] left-[-200px]" />
       <div className="absolute w-[400px] h-[400px] bg-emerald-400/20 blur-3xl rounded-full bottom-[-150px] right-[-150px]" />
 
       {/* HERO */}
       <section className="relative min-h-screen flex items-center justify-center px-6">
-        {/* FIXED BACKGROUND IMAGE */}
         <div
           className="absolute inset-0 opacity-30"
           style={{
@@ -44,24 +56,24 @@ export default function LandingPage() {
           initial="hidden"
           animate="show"
           variants={fadeUp}
-          className="relative text-center max-w-4xl"
+          className="relative text-center max-w-5xl"
         >
-          <h1 className="text-5xl md:text-7xl font-bold leading-tight">
+          <h1 className="text-5xl md:text-7xl font-bold">
             VerdantSphere <span className="text-green-400">AgriTech</span>
           </h1>
 
-          <p className="mt-6 text-lg text-gray-200">
-            AI-powered farming ecosystem for smarter cultivation, higher yield,
-            and sustainable agriculture.
+          <p className="mt-6 text-gray-200 text-lg">
+            AI-powered agriculture platform helping farmers increase yield,
+            reduce cost, and grow sustainably using smart technology.
           </p>
 
           <div className="mt-8 flex justify-center gap-4 flex-wrap">
-            <button className="px-6 py-3 bg-green-500 hover:bg-green-400 text-black rounded-full font-semibold flex items-center gap-2 transition">
+            <button className="px-6 py-3 bg-green-500 text-black rounded-full flex items-center gap-2 font-semibold hover:scale-105 transition">
               Get Started <ArrowRight size={18} />
             </button>
 
             <button className="px-6 py-3 border border-green-400 rounded-full hover:bg-green-400/10 transition">
-              Explore Platform
+              Watch Demo
             </button>
           </div>
         </motion.div>
@@ -70,8 +82,8 @@ export default function LandingPage() {
       {/* STATS */}
       <section className="py-20 px-6 grid md:grid-cols-4 gap-6">
         {[
-          ["120K+", "Farmers Connected"],
-          ["2.5M+", "Acres Optimized"],
+          ["120K+", "Farmers Empowered"],
+          ["2.5M+", "Acres Monitored"],
           ["38%", "Yield Increase"],
           ["25+", "Countries"],
         ].map((s, i) => (
@@ -87,43 +99,117 @@ export default function LandingPage() {
         ))}
       </section>
 
+      {/* WHY CHOOSE US */}
+      <section className="py-24 px-6 max-w-6xl mx-auto">
+        <motion.h2
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          className="text-center text-4xl font-bold mb-12"
+        >
+          Why Farmers Choose VerdantSphere
+        </motion.h2>
+
+        <div className="grid md:grid-cols-3 gap-6">
+          {[
+            {
+              title: "AI Precision Farming",
+              desc: "Every decision powered by real-time machine learning models.",
+            },
+            {
+              title: "Cost Reduction",
+              desc: "Reduce water, fertilizer, and operational costs up to 40%.",
+            },
+            {
+              title: "Higher Yield Guarantee",
+              desc: "Data-driven farming ensures maximum productivity per acre.",
+            },
+          ].map((item, i) => (
+            <motion.div
+              key={i}
+              whileHover={{ scale: 1.05 }}
+              className="p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-lg"
+            >
+              <h3 className="text-green-400 font-semibold text-lg">
+                {item.title}
+              </h3>
+              <p className="text-gray-300 mt-2 text-sm">{item.desc}</p>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* ABOUT SECTION */}
+      <section className="px-6 py-24 max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+        {/* Illustration placeholder */}
+        <motion.div
+          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, x: -50 }}
+          className="h-80 bg-green-500/10 rounded-2xl border border-green-500/20 flex items-center justify-center"
+        >
+          <Sprout className="w-20 h-20 text-green-400" />
+        </motion.div>
+
+        <motion.div
+          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, x: 50 }}
+        >
+          <h2 className="text-4xl font-bold mb-4">Next-Gen Smart Farming</h2>
+          <p className="text-gray-300">
+            VerdantSphere combines AI, IoT, and predictive analytics to
+            transform traditional agriculture into a smart ecosystem.
+          </p>
+
+          <ul className="mt-6 space-y-3 text-gray-300">
+            <li>✔ Real-time crop monitoring</li>
+            <li>✔ AI-powered irrigation control</li>
+            <li>✔ Disease detection using computer vision</li>
+            <li>✔ Smart yield prediction models</li>
+          </ul>
+        </motion.div>
+      </section>
+
       {/* SERVICES */}
       <section className="px-6 py-20">
         <h2 className="text-center text-4xl font-bold mb-12">
           Smart Agriculture Solutions
         </h2>
 
-        <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        <motion.div
+          variants={stagger}
+          initial="hidden"
+          whileInView="show"
+          className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto"
+        >
           {[
             {
               icon: Tractor,
               title: "Smart Farming",
-              desc: "AI-driven equipment automation.",
+              desc: "AI-driven automation for modern farms.",
             },
             {
               icon: Droplets,
               title: "Smart Irrigation",
-              desc: "Water optimization systems.",
+              desc: "Water optimization using sensors.",
             },
             {
-              icon: BarChart3,
-              title: "Crop Analytics",
-              desc: "Predictive yield insights.",
+              icon: Brain,
+              title: "AI Predictions",
+              desc: "Forecast yield & crop health.",
             },
             {
-              icon: Sun,
-              title: "Weather AI",
-              desc: "Hyper-local forecasting.",
+              icon: LineChart,
+              title: "Growth Analytics",
+              desc: "Track farm performance in real time.",
             },
             {
               icon: ShieldCheck,
               title: "Crop Protection",
-              desc: "Disease detection AI.",
+              desc: "Early disease detection system.",
             },
             {
               icon: Globe2,
               title: "Global Market",
-              desc: "Direct farm-to-buyer network.",
+              desc: "Direct farmer-to-buyer platform.",
             },
           ].map((s, i) => (
             <motion.div
@@ -136,17 +222,256 @@ export default function LandingPage() {
               <p className="text-gray-300 text-sm mt-2">{s.desc}</p>
             </motion.div>
           ))}
+        </motion.div>
+      </section>
+
+      {/* AI DECISION ENGINE */}
+      <section className="py-28 px-6 max-w-6xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          className="text-center mb-14"
+        >
+          <h2 className="text-4xl font-bold">AI Farm Decision Engine</h2>
+          <p className="text-gray-300 mt-4 max-w-2xl mx-auto">
+            Our system continuously analyzes soil, weather, crop health, and
+            market trends to make real-time farming decisions for maximum profit
+            and yield.
+          </p>
+        </motion.div>
+
+        <div className="grid md:grid-cols-3 gap-6">
+          {/* CARD 1 */}
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            className="p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-lg"
+          >
+            <h3 className="text-green-400 font-semibold text-lg">
+              🌱 Smart Crop Recommendation
+            </h3>
+            <p className="text-gray-300 mt-3 text-sm">
+              AI suggests the best crop based on soil nutrients, season, and
+              market demand.
+            </p>
+          </motion.div>
+
+          {/* CARD 2 */}
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            className="p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-lg"
+          >
+            <h3 className="text-green-400 font-semibold text-lg">
+              💧 Automated Irrigation Control
+            </h3>
+            <p className="text-gray-300 mt-3 text-sm">
+              Smart sensors trigger water systems only when needed — saving up
+              to 45% water.
+            </p>
+          </motion.div>
+
+          {/* CARD 3 */}
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            className="p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-lg"
+          >
+            <h3 className="text-green-400 font-semibold text-lg">
+              📊 Market Price Prediction
+            </h3>
+            <p className="text-gray-300 mt-3 text-sm">
+              AI predicts crop prices so farmers can sell at the highest profit
+              window.
+            </p>
+          </motion.div>
+        </div>
+
+        {/* BOTTOM HIGHLIGHT BAR */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          className="mt-16 text-center p-6 rounded-2xl bg-green-500/10 border border-green-500/20"
+        >
+          <p className="text-green-300 font-medium">
+            ⚡ Powered by real-time IoT sensors + Machine Learning models
+          </p>
+        </motion.div>
+      </section>
+
+      {/* HOW IT WORKS */}
+      <section className="py-24 px-6 text-center">
+        <h2 className="text-4xl font-bold mb-12">How It Works</h2>
+
+        <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          {[
+            {
+              step: "01",
+              title: "Collect Data",
+              desc: "Sensors gather soil & weather data.",
+            },
+            {
+              step: "02",
+              title: "AI Analysis",
+              desc: "Machine learning processes insights.",
+            },
+            {
+              step: "03",
+              title: "Optimize Growth",
+              desc: "Automated farming decisions.",
+            },
+          ].map((p, i) => (
+            <motion.div
+              key={i}
+              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 40 }}
+              className="bg-white/5 p-6 rounded-2xl border border-white/10"
+            >
+              <h3 className="text-green-400 text-xl font-bold">{p.step}</h3>
+              <h4 className="font-semibold mt-2">{p.title}</h4>
+              <p className="text-gray-300 mt-2">{p.desc}</p>
+            </motion.div>
+          ))}
         </div>
       </section>
 
-      {/* FEATURE */}
-      <section className="py-16 text-center bg-green-500/10">
-        <div className="grid md:grid-cols-4 gap-6 px-6">
-          {[Leaf, Wheat, TreePine, CloudRain].map((Icon, i) => (
-            <motion.div key={i} whileHover={{ scale: 1.1 }}>
-              <Icon className="mx-auto text-green-400 w-8 h-8" />
-              <p className="mt-2 text-gray-200">Smart Agriculture</p>
+      {/* TESTIMONIALS */}
+      <section className="py-28 px-6 text-center relative">
+        {/* SECTION TITLE */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          className="mb-14"
+        >
+          <h2 className="text-4xl font-bold">What Farmers Say</h2>
+          <p className="text-gray-300 mt-3">
+            Real feedback from farmers using our AI agriculture system.
+          </p>
+        </motion.div>
+
+        {/* TESTIMONIAL GRID */}
+        <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          {[
+            {
+              name: "Rahim Uddin",
+              role: "Rice Farmer",
+              location: "Rajshahi, Bangladesh",
+              text: "Yield increased by 42% using AI irrigation suggestions. My farm is now fully optimized.",
+            },
+            {
+              name: "Ayesha Khan",
+              role: "Organic Farm Owner",
+              location: "Dhaka, Bangladesh",
+              text: "The crop disease detection system saved my entire harvest this season.",
+            },
+            {
+              name: "John Mathews",
+              role: "Agri Entrepreneur",
+              location: "Texas, USA",
+              text: "Best farming analytics platform I’ve ever used. Data accuracy is incredible.",
+            },
+          ].map((t, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{ scale: 1.05 }}
+              transition={{ delay: i * 0.1 }}
+              className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-lg text-left relative overflow-hidden"
+            >
+              {/* QUOTE ICON BACKGROUND */}
+              <div className="absolute text-green-500/10 text-8xl top-2 right-4 font-bold">
+                “”
+              </div>
+
+              {/* USER HEADER */}
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-12 h-12 rounded-full bg-green-500/20 flex items-center justify-center">
+                  🌱
+                </div>
+
+                <div>
+                  <h3 className="font-semibold">{t.name}</h3>
+                  <p className="text-xs text-gray-400">{t.role}</p>
+                  <p className="text-xs text-gray-500">{t.location}</p>
+                </div>
+              </div>
+
+              {/* STAR RATING */}
+              <div className="text-green-400 text-sm mb-3">★ ★ ★ ★ ★</div>
+
+              {/* TEXT */}
+              <p className="text-gray-300 text-sm leading-relaxed">{t.text}</p>
             </motion.div>
+          ))}
+        </div>
+
+        {/* FEATURED TESTIMONIAL */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          className="mt-16 max-w-4xl mx-auto bg-green-500/10 border border-green-500/20 rounded-2xl p-8 backdrop-blur-lg"
+        >
+          <p className="text-green-300 font-medium text-lg">
+            🌟 “VerdantSphere completely transformed how I manage my farm.
+            Everything is automated and data-driven now.”
+          </p>
+          <p className="text-gray-400 mt-3 text-sm">
+            — Verified Farmer Community Feedback
+          </p>
+        </motion.div>
+      </section>
+
+      {/* FAQ SECTION */}
+      <section className="py-28 px-6 max-w-5xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          className="text-center mb-14"
+        >
+          <h2 className="text-4xl font-bold">Frequently Asked Questions</h2>
+          <p className="text-gray-300 mt-4">
+            Everything you need to know about VerdantSphere AgriTech.
+          </p>
+        </motion.div>
+
+        <div className="space-y-4">
+          {[
+            {
+              q: "How does AI improve farming efficiency?",
+              a: "Our AI analyzes soil, weather, and crop data in real time to optimize irrigation, fertilization, and harvesting decisions, increasing yield and reducing waste.",
+            },
+            {
+              q: "Do I need special hardware to use VerdantSphere?",
+              a: "Basic sensors improve performance, but our platform can also work with manual data input for small farms.",
+            },
+            {
+              q: "Is this suitable for small farmers?",
+              a: "Yes, the system is scalable — from small family farms to large agricultural enterprises.",
+            },
+            {
+              q: "How accurate is the AI prediction system?",
+              a: "Our models achieve up to 90–95% accuracy in yield prediction based on historical and real-time data.",
+            },
+            {
+              q: "Can I track my farm remotely?",
+              a: "Yes, you can monitor soil health, irrigation, and crop status from anywhere using the dashboard.",
+            },
+          ].map((item, i) => (
+            <motion.details
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              className="group bg-white/5 border border-white/10 rounded-2xl p-5 cursor-pointer"
+            >
+              <summary className="flex justify-between items-center text-white font-medium">
+                {item.q}
+                <span className="text-green-400 group-open:rotate-45 transition">
+                  +
+                </span>
+              </summary>
+
+              <p className="text-gray-300 mt-3 text-sm leading-relaxed">
+                {item.a}
+              </p>
+            </motion.details>
           ))}
         </div>
       </section>
